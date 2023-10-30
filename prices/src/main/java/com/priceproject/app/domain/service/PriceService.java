@@ -45,13 +45,10 @@ public class PriceService {
 	}
 	
 	private Boolean checkIfIsContainedInDateRange(Price price, LocalDateTime currentDate){
-		Boolean sol = currentDate.isEqual(price.getStartDate()) 
+	
+		return currentDate.isEqual(price.getStartDate()) 
 				 || currentDate.isEqual(price.getEndDate()) 
 				 || (currentDate.isAfter(price.getStartDate()) && currentDate.isBefore(price.getEndDate()));
-		System.out.println("sssssssssssssssssssss");
-		System.out.println(sol);
-		System.out.println("sssssssssssssssssssss");
-		 return sol;
 	}
 
 }
