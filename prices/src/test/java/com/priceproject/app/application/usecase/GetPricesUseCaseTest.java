@@ -1,18 +1,16 @@
 package com.priceproject.app.application.usecase;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
 
 import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.priceproject.app.domain.model.PriceOutput;
-import com.priceproject.app.domain.service.PriceService;
+
 
 @SpringBootTest
 public class GetPricesUseCaseTest {
