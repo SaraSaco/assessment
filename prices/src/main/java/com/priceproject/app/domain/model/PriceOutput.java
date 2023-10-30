@@ -12,6 +12,7 @@ public class PriceOutput extends Output {
 		this.brandId = price.getBrandId();
 		this.startDate = price.getStartDate();
 		this.endDate = price.getEndDate();
+		this.price_list = price.getPriceListId();
 		this.productId = price.getProductId();
 		this.price = price.getPrice();
 	}
@@ -22,6 +23,8 @@ public class PriceOutput extends Output {
 	private LocalDateTime startDate;
 
 	private LocalDateTime endDate;
+	
+	private Integer price_list;
 
 	private Integer productId;
 
