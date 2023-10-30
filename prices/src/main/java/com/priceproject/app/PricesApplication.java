@@ -1,4 +1,4 @@
-package com.priceproject.prices;
+package com.priceproject.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
