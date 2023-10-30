@@ -1,6 +1,6 @@
 # Technical assessment
 
-##Introduction
+## Introduction
 My project consists of a service that provides a REST endpoint for querying, which accepts the following input parameters:
 
 1. Application date. 
@@ -14,9 +14,11 @@ And returns the following output data:
 	
 Developing tests for the REST endpoint that validate the service requests with the example data provided at the end of the statement.
 
-##Technical description
+## Technical description
 
 To perform this project, I have used Java11 and Spring Boot as the programming language. In addition to dependencies such as H2 (for the in-memory database), JPA, and Lombok.
+
+I have used GitHub as a version control system and Spring Tool Suite 4 as an IDE.
 
 I've structured this project following the hexagonal architecture design.
 
@@ -53,6 +55,15 @@ In src/main/resources, you will find application.properties, in which the connec
 In the com.priceproject.app.application.usecase package, located within src/test/java, we find:
 
 The GetPricesUseCaseTest class contains the implementation of the test cases specified in the statement.
+
+## Installation
+
+If you want to run the application, you should follow the following steps
+
+1. Clone the repository.
+2. Navigate to the project directory.
+3. Import 'price' folder, which is located within 'assessment,' into your preferred IDE.
+4. Perform a Maven Project Update to verify that all dependencies have been successfully downloaded.
 
 ## Usage
 To make a request to the REST API, open a web browser and enter the following URL:
