@@ -9,10 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.priceproject.app.domain.model.ErrorOutput;
 import com.priceproject.app.domain.model.PriceOutput;
 import com.priceproject.app.infrastructure.DateParse;
-import com.priceproject.app.infrastructure.rest.PriceController;
 
 @SpringBootTest
 public class GetPricesUseCaseTest {
@@ -44,37 +42,45 @@ public class GetPricesUseCaseTest {
 	@Test
 	public void test1() {
 		
+		//Given
 		date="2020-06-14-10.00.00";
 		dateParsed = dateParse.ParseStringToLocalDateTime(date);
 		
-		// Expected output
+		//When
+		PriceOutput po = (PriceOutput)useCase.execute(dateParsed, productId, brandId);
+		
+		//Then
 		priceExpected = 35.50;
 		startDateExpected = LocalDateTime.of(2020, 6, 14, 0, 0, 0);
 		endDateExpected = LocalDateTime.of(2020, 12, 31, 23, 59, 59);
 		price_list = 1;
-		
-		PriceOutput po = (PriceOutput)useCase.execute(dateParsed, productId, brandId);		
-	
 		assertTrue(priceExpected == po.getPrice());
 		assertTrue(startDateExpected.equals(po.getStartDate()));
 		assertTrue(endDateExpected.equals(po.getEndDate()));
 		assertTrue(productId.equals((po.getProductId())));
 		assertTrue(brandId.equals((po.getBrandId())));
 		assertTrue(price_list.equals(po.getPrice_list()));
+	
+		
+				
+	
 	}
 	
 	@Test
 	public void test2() {
+		
+		//Given
 		date="2020-06-14-16.00.00";
 		dateParsed = dateParse.ParseStringToLocalDateTime(date);
-		// Expected output
+		
+		//When
+		PriceOutput po = (PriceOutput)useCase.execute(dateParsed, productId, brandId);		
+		
+		//Then
 		priceExpected = 25.45;
 		startDateExpected = LocalDateTime.of(2020, 6, 14, 15, 0, 0);
 		endDateExpected = LocalDateTime.of(2020, 6, 14, 18, 30, 0);
 		price_list = 2;
-		
-		PriceOutput po = (PriceOutput)useCase.execute(dateParsed, productId, brandId);		
-	
 		assertTrue(priceExpected == po.getPrice());
 		assertTrue(startDateExpected.equals(po.getStartDate()));
 		assertTrue(endDateExpected.equals(po.getEndDate()));
@@ -85,16 +91,18 @@ public class GetPricesUseCaseTest {
 	
 	@Test
 	public void test3() {
+		//Given
 		date="2020-06-14-21.00.00";
 		dateParsed = dateParse.ParseStringToLocalDateTime(date);
-		// Expected output
+		
+		//When
+		PriceOutput po = (PriceOutput)useCase.execute(dateParsed, productId, brandId);		
+		
+		//Then
 		priceExpected = 35.50;
 		startDateExpected = LocalDateTime.of(2020, 6, 14, 0, 0, 0);
 		endDateExpected = LocalDateTime.of(2020, 12, 31, 23, 59, 59);
 		price_list = 1;
-		
-		PriceOutput po = (PriceOutput)useCase.execute(dateParsed, productId, brandId);		
-	
 		assertTrue(priceExpected == po.getPrice());
 		assertTrue(startDateExpected.equals(po.getStartDate()));
 		assertTrue(endDateExpected.equals(po.getEndDate()));
@@ -105,17 +113,18 @@ public class GetPricesUseCaseTest {
 	
 	@Test
 	public void test4() {
+		//Given
 		date="2020-06-15-10.00.00";
 		dateParsed = dateParse.ParseStringToLocalDateTime(date);
-		
-		// Expected output
+
+		//When
+		PriceOutput po = (PriceOutput)useCase.execute(dateParsed, productId, brandId);		
+	
+		//Then
 		priceExpected = 30.50;
 		startDateExpected = LocalDateTime.of(2020, 6, 15, 0, 0, 0);
 		endDateExpected = LocalDateTime.of(2020, 6, 15, 11, 0, 0);
 		price_list = 3;
-		
-		PriceOutput po = (PriceOutput)useCase.execute(dateParsed, productId, brandId);		
-	
 		assertTrue(priceExpected == po.getPrice());
 		assertTrue(startDateExpected.equals(po.getStartDate()));
 		assertTrue(endDateExpected.equals(po.getEndDate()));
@@ -126,16 +135,18 @@ public class GetPricesUseCaseTest {
 	
 	@Test
 	public void test5() {
+		//Given
 		date="2020-06-16-21.00.00";
 		dateParsed = dateParse.ParseStringToLocalDateTime(date);
-		// Expected output
+		
+		//When
+		PriceOutput po = (PriceOutput)useCase.execute(dateParsed, productId, brandId);		
+	
+		//Then
 		priceExpected = 38.95;
 		startDateExpected = LocalDateTime.of(2020, 6, 15, 16, 0, 0);
 		endDateExpected = LocalDateTime.of(2020, 12, 31, 23, 59, 59);
 		price_list = 4;
-		
-		PriceOutput po = (PriceOutput)useCase.execute(dateParsed, productId, brandId);		
-	
 		assertTrue(priceExpected == po.getPrice());
 		assertTrue(startDateExpected.equals(po.getStartDate()));
 		assertTrue(endDateExpected.equals(po.getEndDate()));
