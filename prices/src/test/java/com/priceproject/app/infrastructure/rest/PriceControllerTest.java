@@ -25,31 +25,55 @@ class PriceControllerTest {
 	
 	@Test
 	public void testBrandIdIsNull(){
+		//Given
 		date="2020-06-14-10.00.00";
 		
-		errExpected = new ErrorOutput("The param brandId is mandatory");
+		//When
 		ErrorOutput eo = (ErrorOutput)priceController.rateByDate("noData", pId, date);
+		
+		//Then
+		errExpected = new ErrorOutput("The param brandId is mandatory");
 		assertTrue(errExpected.equals(eo));
 	}
 	
 	@Test
 	public void testProductIdIsNull(){
+		//Given
 		date="2020-06-14-10.00.00";
 		
-		errExpected = new ErrorOutput("The param productId is mandatory");
+		//When
 		ErrorOutput eo = (ErrorOutput)priceController.rateByDate(bId, "noData", date);
+		
+		//Then
+		errExpected = new ErrorOutput("The param productId is mandatory");
 		assertTrue(errExpected.equals(eo));
 	}
 	
 	@Test
 	public void testDateIsNull(){
-	
-		errExpected = new ErrorOutput("The param date is mandatory");
+		//Given
 		
+		//When
 		ErrorOutput eo = (ErrorOutput)priceController.rateByDate(bId, pId, "noData");
-		
+		//Then
+		errExpected = new ErrorOutput("The param date is mandatory");
 		assertTrue(errExpected.equals(eo));
 	}
+	
+	@Test
+	public void testIncorrectFormatData(){
+	
+		//Given
+		date="2020-06-14-10.00.00";
+		
+		//When
+		ErrorOutput eo = (ErrorOutput)priceController.rateByDate(bId, "-20", date);
+		
+		//Then
+		errExpected = new ErrorOutput("productId must be a positive integer.");
+		assertTrue(errExpected.equals(eo));
+	}
+	
 	
 
 }
