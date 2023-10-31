@@ -5,14 +5,14 @@ My project consists of a service that provides a REST endpoint for querying, whi
 
 1. Application date. 
 2. Product identifier.
-3. Chain identifier.
+3. Brand identifier.
 
 And returns the following output data:
 
 1. In case of an error or no match: a descriptive message.
-2. In case of a match: Product identifier, Chain identifier, Applicable rate, Application dates (start and end), and Final price to be applied. 
+2. In case of a match: Product identifier, Brand identifier, Applicable rate, Application dates (start and end), and Final price to be applied. 
 	
-Developing tests for the REST endpoint that validate the service requests with the example data provided at the end of the statement.
+Creating tests for the REST endpoint to verify service requests with the sample data provided in the statement, in addition to other tests.
 
 ## Technical description
 
@@ -44,11 +44,13 @@ The PriceService class is responsible for calling the EntityManager to retrieve 
 Third:
 - infrastructure:
 
-In the rest package, you will find the PriceController class, which corresponds to the REST controller where the request is mapped. It invokes the use case.
+In the rest package, you will find the PriceController class, which corresponds to the REST controller where the request is mapped. It invokes the use case and verifies that the input data has correct values and is not null using the methods from the Validate class.
 
 The DateParse class is responsible for transforming a String into a LocalDateTime data.
 
 The EntityManager class is responsible for making the call to the PriceRepository class to retrieve all the data in the database.
+
+The Validate class contains the methods responsible for verifying whether the input data it receives is not null and is in the correct data type format
 
 In src/main/resources, you will find application.properties, in which the connection with H2 is specified, and the data.sql file is used for dumping example data into the database.
 
@@ -56,24 +58,37 @@ In the com.priceproject.app.application.usecase package, located within src/test
 
 The GetPricesUseCaseTest class contains the implementation of the test cases specified in the statement.
 
+In the com.priceproject.app.domain.service package, located within src/test/java, we find:
+
+The PriceServiceTest class contains the implementation of the first test case as specified in the statement.
+
+In the com.priceproject.app.infrastructure.rest package, located within src/test/java, we find:
+
+The PriceControllerTest class contains the implementation of test cases that verify that data values are in the correct format and are not null.
+
+In the com.priceproject.app.infrastructure package, located within src/test/java, we find:
+
+The EntityManagerTest class contains the test that checks that prices are correctly retrieved from the database. 
+
 ## Installation
 
 If you want to run the application, you should follow the following steps
 
-1. Clone the repository.
-2. Navigate to the project directory.
-3. Import 'price' folder, which is located within 'assessment,' into your preferred IDE.
-4. Perform a Maven Project Update to verify that all dependencies have been successfully downloaded.
+1. Clone the repository: git clone https://github.com/SaraSaco/assessment.git
+2. Navigate to the project directory: cd assessment/prices
+3. To install the project on your computer: mvn clean install
+4. To start the application: mvn spring-boot:run
+5. To run all the tests: mvn test
 
 ## Usage
 To make a request to the REST API, open a web browser and enter the following URL:
-http://localhost:8080/date_value/product_id_value/chain_id_value
+http://localhost:8080/price?idProduct=product_id_value&idBrand=brand_id_value&date=date_value
 
 Where
 
 - date_value is the application date in the format yyyy-MM-dd.HH.mm.ss
-- product_id_value is the product ID value. It must be a integer number.
-- chain_id_value is the chain ID value. It must be a integer number.
+- product_id_value is the product ID value. It must be a positive integer number.
+- brand_id_value is the Brand ID value. It must be a positive integer number.
 
-An example of a valid input to determine the applicable rate for June fourteenth of this year at ten o'clock in the evening for chain group one and the product with an ID of one thousand would be as follows: 
-http://localhost:8080/2023-06-14-22.00.00/1000/1
+An example of a valid input to determine the applicable rate for June fourteenth, two thousand twenty, at ten o'clock in the morning, for Brand group one and the product with an ID of thirty-five thousand four hundred fifty-five would be as follows: 
+http://localhost:8080/price?idProduct=35455&idBrand=1&date=2020-06-14-10.00.00
